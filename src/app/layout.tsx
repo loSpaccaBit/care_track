@@ -8,9 +8,13 @@ import { cn } from '@/lib/utils';
 import BottomNav from '@/components/navigation/bottom-nav';
 import { AuthProvider } from '@/context/auth-context'; // Import AuthProvider
 
-// Define viewport settings for PWA theme color
+// Define viewport settings for PWA theme color and disable zoom
 export const viewport: Viewport = {
   themeColor: '#00796B', // Match theme_color in manifest.json
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1, // Disable zooming
+  userScalable: false, // Disable zooming
 };
 
 export const metadata: Metadata = {
@@ -34,8 +38,8 @@ export default function RootLayout({
     // Apply suppressHydrationWarning to the <html> tag to ignore extension mismatches
     // Apply font variables to the html tag
     <html lang="en" suppressHydrationWarning className={cn(GeistSans.variable, GeistMono.variable)}>
-      {/* Apply antialiasing to the body tag */}
-      {/* Increase pb-20 to pb-24 for more bottom space */}
+      {/* Apply antialiasing and font variables to the body tag */}
+       {/* Increase pb-20 to pb-24 for more bottom space */}
        {/* Add suppressHydrationWarning to body if necessary, but prefer on html */}
       <body className={cn('antialiased pb-24')} suppressHydrationWarning>
         {/* Wrap the entire content with AuthProvider */}
