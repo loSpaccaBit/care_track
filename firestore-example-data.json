@@ -1,0 +1,134 @@
+
+{
+  "companies": {
+    "c1": {
+      "id": "c1",
+      "name": "HealthCare Solutions Srl",
+      "address": "Via Milano 10, Roma",
+      "contact": "0212345678"
+    },
+    "c2": {
+      "id": "c2",
+      "name": "Assistenza Domiciliare ABC",
+      "address": "Corso Italia 5, Firenze",
+      "contact": "info@assistenzaabc.it"
+    }
+  },
+  "patients": {
+    "p1": {
+      "id": "p1",
+      "name": "Mario Rossi",
+      "companyId": "c1",
+      "address": "Via Roma 1, Milano",
+      "contact": "3331234567",
+      "_subcollections": {
+        "assignedPlans": {
+          "plan1": {
+            "planId": "plan1",
+            "customDuration": 40,
+            "scheduledInstances": [
+              {
+                "date": "Timestamp(seconds=1728895200, nanoseconds=0)",
+                "time": "09:00"
+              },
+              {
+                "date": "Timestamp(seconds=1729068000, nanoseconds=0)",
+                "time": "10:30"
+              }
+            ]
+          },
+          "plan2": {
+            "planId": "plan2",
+            "scheduledInstances": [
+              {
+                "date": "Timestamp(seconds=1728981600, nanoseconds=0)"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "p2": {
+      "id": "p2",
+      "name": "Giulia Bianchi",
+      "companyId": "c2",
+      "address": "Piazza Duomo 2, Napoli",
+      "contact": "3479876543",
+       "_subcollections": {
+         "assignedPlans": {
+            "plan3": {
+              "planId": "plan3",
+              "scheduledInstances": [
+                {
+                  "date": "Timestamp(seconds=1728895200, nanoseconds=0)",
+                  "time": "14:00"
+                }
+              ]
+            }
+         }
+       }
+    },
+     "p3": {
+        "id": "p3",
+        "name": "Luca Verdi",
+        "companyId": "c1",
+        "address": "Via Garibaldi 15, Torino",
+        "contact": "3205551122",
+        "_subcollections": {
+            "assignedPlans": {}
+        }
+     }
+  },
+  "plans": {
+    "plan1": {
+      "id": "plan1",
+      "name": "Medicazione Semplice",
+      "description": "Applicazione di medicazione su ferita superficiale.",
+      "defaultDuration": 30
+    },
+    "plan2": {
+      "id": "plan2",
+      "name": "Controllo Pressione",
+      "description": "Misurazione pressione arteriosa.",
+      "defaultDuration": 15
+    },
+    "plan3": {
+      "id": "plan3",
+      "name": "Iniezione Sottocutanea",
+      "description": null,
+      "defaultDuration": 10
+    }
+  },
+  "services": {
+    "s1": {
+      "patientId": "p1",
+      "date": "Timestamp(seconds=1728895200, nanoseconds=0)",
+      "startTime": "09:05",
+      "endTime": "09:48",
+      "description": "Piano: Medicazione Semplice",
+      "durationMinutes": 43,
+      "userId": "nurse_user_uid_1",
+      "companyId": "c1"
+    },
+    "s2": {
+      "patientId": "p2",
+      "date": "Timestamp(seconds=1728895200, nanoseconds=0)",
+      "startTime": "11:00",
+      "endTime": "11:15",
+      "description": "Controllo glicemia capillare",
+      "durationMinutes": 15,
+      "userId": "nurse_user_uid_1",
+      "companyId": "c2"
+    },
+    "s3": {
+      "patientId": "p1",
+      "date": "Timestamp(seconds=1728981600, nanoseconds=0)",
+      "startTime": "10:00",
+      "endTime": "10:18",
+      "description": "Piano: Controllo Pressione",
+      "durationMinutes": 18,
+      "userId": "nurse_user_uid_2",
+      "companyId": "c1"
+    }
+  }
+}
