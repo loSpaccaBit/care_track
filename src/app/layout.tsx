@@ -7,6 +7,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { cn } from '@/lib/utils';
 import BottomNav from '@/components/navigation/bottom-nav';
 import { AuthProvider } from '@/context/auth-context'; // Import AuthProvider
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // Define viewport settings for PWA theme color and disable zoom
 export const viewport: Viewport = {
@@ -39,19 +41,21 @@ export default function RootLayout({
     // Apply font variables to the html tag
     <html lang="en" suppressHydrationWarning className={cn(GeistSans.variable, GeistMono.variable)}>
       {/* Apply antialiasing and font variables to the body tag */}
-       {/* Increase pb-20 to pb-24 for more bottom space */}
-       {/* Add suppressHydrationWarning to body if necessary, but prefer on html */}
+      {/* Increase pb-20 to pb-24 for more bottom space */}
+      {/* Add suppressHydrationWarning to body if necessary, but prefer on html */}
       <body className={cn('antialiased pb-24')} suppressHydrationWarning>
         {/* Wrap the entire content with AuthProvider */}
         <AuthProvider>
-            <div className="flex flex-col min-h-screen">
-                {/* Main content area will grow to fill space */}
-                 <div className="flex-grow">
-                    {children}
-                </div>
+          <div className="flex flex-col min-h-screen">
+            {/* Main content area will grow to fill space */}
+            <div className="flex-grow">
+              {children}
             </div>
-            <BottomNav /> {/* Render BottomNav inside AuthProvider but outside flex-grow */}
-            <Toaster />
+          </div>
+          <BottomNav /> {/* Render BottomNav inside AuthProvider but outside flex-grow */}
+          <Toaster />
+          <Analytics />
+          <SpeedInsights />
         </AuthProvider>
       </body>
     </html>
