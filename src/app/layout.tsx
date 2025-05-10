@@ -43,6 +43,7 @@ export default function RootLayout({
       {/* Apply antialiasing and font variables to the body tag */}
       {/* Increase pb-20 to pb-24 for more bottom space */}
       {/* Add suppressHydrationWarning to body if necessary, but prefer on html */}
+      <meta name="google-adsense-account" content="ca-pub-6394235100828735" />
       <body className={cn('antialiased pb-24')} suppressHydrationWarning>
         {/* Wrap the entire content with AuthProvider */}
         <AuthProvider>
