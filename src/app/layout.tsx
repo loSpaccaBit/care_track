@@ -1,34 +1,30 @@
-
-import type { Metadata, Viewport } from 'next'; // Import Viewport
+import type { Metadata, Viewport } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from '@/lib/utils';
 import BottomNav from '@/components/navigation/bottom-nav';
-import { AuthProvider } from '@/context/auth-context'; // Import AuthProvider
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { AuthProvider } from '@/context/auth-context';
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Define viewport settings for PWA theme color and disable zoom
 export const viewport: Viewport = {
-  themeColor: '#00796B', // Match theme_color in manifest.json
+  themeColor: '#00796B',
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1, // Disable zooming
-  userScalable: false, // Disable zooming
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export const metadata: Metadata = {
   title: 'CareTrack Mobile',
   description: 'Track nursing home care services efficiently.',
-  manifest: '/manifest.json', // Link to the web app manifest
-  // Add basic PWA meta tags
+  manifest: '/manifest.json',
   appleWebAppCapable: 'yes',
-  appleWebAppStatusBarStyle: 'default', // Or 'black-translucent'
+  appleWebAppStatusBarStyle: 'default',
   appleWebAppTitle: 'CareTrack',
-  // formatDetection: { telephone: 'no' }, // Optional: Prevent auto-detection of phone numbers
-  // Add more relevant PWA or SEO meta tags if needed
 };
 
 export default function RootLayout({
@@ -37,23 +33,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // Apply suppressHydrationWarning to the <html> tag to ignore extension mismatches
-    // Apply font variables to the html tag
     <html lang="en" suppressHydrationWarning className={cn(GeistSans.variable, GeistMono.variable)}>
-      {/* Apply antialiasing and font variables to the body tag */}
-      {/* Increase pb-20 to pb-24 for more bottom space */}
-      {/* Add suppressHydrationWarning to body if necessary, but prefer on html */}
-      <meta name="google-adsense-account" content="ca-pub-6394235100828735" />
+      <head>
+        {/* Google AdSense Script */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6394235100828735"
+          crossorigin="anonymous"></script>
+        {/* Add Google AdSense meta if needed */}
+        <meta name="google-adsense-account" content="ca-pub-6394235100828735" />
+      </head>
       <body className={cn('antialiased pb-24')} suppressHydrationWarning>
-        {/* Wrap the entire content with AuthProvider */}
         <AuthProvider>
           <div className="flex flex-col min-h-screen">
-            {/* Main content area will grow to fill space */}
+            {/* Main content area */}
             <div className="flex-grow">
               {children}
             </div>
           </div>
-          <BottomNav /> {/* Render BottomNav inside AuthProvider but outside flex-grow */}
+          <BottomNav />
           <Toaster />
           <Analytics />
           <SpeedInsights />
